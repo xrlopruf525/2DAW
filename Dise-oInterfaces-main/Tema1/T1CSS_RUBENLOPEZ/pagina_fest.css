@@ -1,0 +1,189 @@
+/*General */
+
+body {
+    font-family: sans-serif;
+    background-color: #ffeb3b;
+    color: black;
+    margin: 0;
+    text-align: center;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+/*Encabezado */
+header{
+    background-color: beige;
+    border: 2px solid black;
+    text-align: center;
+    height: 10vh;
+    clear: both;
+}
+header h1{
+    float: left;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 100px;
+    display: block;
+    padding-left: 50px;
+
+}
+header nav {
+    margin: 15px;
+    padding-left: 50%;
+    display: inline-block;
+}
+
+
+header nav ul li {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+header nav ul li:hover {
+    background-color: black;
+    color: #ffeb3b;
+}
+
+/* Sección principal */
+
+.principal{
+    clear: both;
+}
+.principal img {
+    width: 80%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.descripcion {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Sección secundaria */
+.secundaria {
+    margin: 20px 0;
+    background-color: beige;
+}
+
+.info,
+.entradas {
+    display: inline-block;
+    vertical-align: top;
+    width: 49%;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.info h2 {
+    margin-bottom: 10px;
+}
+
+.entradas{
+    border-left: 1px solid black;
+    margin-top: 15px;
+}
+button {
+    display: inline-block;
+    border: 2px solid black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: black;
+    font-weight: bold;
+    margin: 30px;
+}
+button:hover {
+    background-color: black;
+    color: #ffeb3b;
+}
+
+/* Seccion Terciaria */
+.terciaria {
+    margin: 60px 0;
+}
+
+.artistas li {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #fff8dc;
+    display: inline-block;
+    width: 200px;
+}
+
+/* Footer */
+footer {
+    background-color: beige;
+    border-top: 2px solid black;
+    height: 15vhpx;
+}
+
+footer i {
+    color: black;
+    margin: 10px;
+    font-size: 30px;
+}
+
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: #ffeb3b;
+        font-family: "Courier New", monospace;
+    }
+
+    header, footer, .secundaria, .artistas li,  button{
+        background-color: #222;
+        border-color: #ffeb3b;
+        color: #ffeb3b;   
+     }
+
+    header nav ul li,
+    footer i {
+        color: #ffeb3b;
+        border-color: #ffeb3b;
+    }
+
+
+    button:hover, header nav ul li:hover {
+        background-color: #ffeb3b;
+        color: black;
+    }
+
+}
+
+/* Responsive (width <= 600px) */
+@media (width <= 600px) {
+    header {
+        height: auto; 
+        padding: 10px;
+        text-align: center;
+    }
+
+    header h1 {
+        float: none; 
+        display: block;
+        font-size: 24px;
+        padding-left: 230px;
+    }
+
+    header nav {
+        display: block; 
+        float: none;
+        padding: 0;
+        
+    }
+
+
+
+    header nav ul li {
+        display: block;
+        margin: 5px;
+    }
+
+}

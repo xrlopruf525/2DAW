@@ -1,0 +1,53 @@
+body {
+  font-family: sans-serif; 
+  display: flex; 
+  flex-wrap: wrap; 
+  height: 100vh; 
+  width: 100vw;
+}
+
+.menu{
+  flex: 1 0 5vw;
+  flex-direction: column;
+  margin-top: 1vh;
+}
+
+.foto{
+  flex: 1 0 45vw;
+  margin: 1vw;
+}
+
+.contenido{
+  flex: 1 0 45vw;
+  margin: 1vw;
+  flex-direction: column;
+  display: flex;
+}
+
+.titulo{
+  flex: 0 0 35vh;
+  margin: 1vh;
+}
+
+.subtitulo{
+  flex: 0 0 35vh;
+  margin: 1vh;
+
+}
+
+.productos{
+  flex: 1 0 15vh;
+  margin: 1vh;
+  display: flex;
+  align-items: center;
+}
+
+.producto1 , .producto2 , .producto3 , .producto4{
+
+  margin: 0.5vw;
+  border: 2px solid black;
+  flex-basis: 5vw;
+  flex-direction: column;
+  text-align: center;
+
+} 

@@ -1,0 +1,52 @@
+form {
+    max-width: 400px;
+    padding: 20px;
+    display: block;
+    border: 1px solid;
+    margin: auto;
+    
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+}
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 15px;
+}
+
+input[type="submit"]:hover {
+    background: #45a049;    border: none;
+    cursor:cell;
+}
+
+nav ul li{
+    display: inline;
+    background-color:burlywood;
+    border: 2px solid black;
+    padding: 0.5%;
+}
+nav{
+    background-color: gray;
+    height: 40px;
+    padding: 0.5%;
+}
+
+footer{
+    background-color: cadetblue;
+}

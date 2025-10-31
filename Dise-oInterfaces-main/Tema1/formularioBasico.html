@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario basico</title>
+    <link rel="stylesheet" href="cssbasico.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Formulario</li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <form>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="mensaje">Mensaje:</label><br>
+            <textarea id="mensaje" name="mensaje" rows="4" cols="50" ></textarea>
+            <label for="pais">Pais:</label>
+            <select id="pais" name="pais" >
+                <option value="es">España</option>
+                <option value="mx">México</option>
+                <option value="ar">Argentina</option>
+                <option value="cl">Chile</option>
+                <option value="co">Colombia</option>
+            </select>
+            <label for="fecha">Fecha de nacimiento:</label>
+            <input type="date" id="fecha" name="fecha" >
+            <fieldset>
+                <legend>Género:</legend>
+                <label for="hombre">
+                <input type="radio" id="hombre" name="genero" value="hombre">
+                Hombre
+                </label>
+                <label for="mujer">
+                <input type="radio" id="mujer" name="genero" value="mujer">
+                Mujer
+                </label>
+                <label for="otro">
+                <input type="radio" id="otro" name="genero" value="otro">
+                Otro
+                </label>
+            </fieldset>
+            <label for="terminos">
+                <input type="checkbox" id="terminos" name="terminos" >
+                Acepto los términos y condiciones
+            </label>
+            <input type="submit" value="Enviar">
+        </form>
+    </section>
+    <footer>
+        <ul>
+            <li>Ruben Lopez</li>
+            <li>IES HNOS MACHADO</li>
+        </ul>
+    </footer>
+    
+</body>
+</html>

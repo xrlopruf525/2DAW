@@ -1,0 +1,10 @@
+p{
+    display: none;
+    visibility: visible;
+}
+a{
+    display: block;
+}
+a::before{
+    
+}

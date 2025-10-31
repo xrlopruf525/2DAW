@@ -1,0 +1,84 @@
+body{
+    min-height: 100vh;
+    margin: 0;
+   
+    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+    font-size: 16px; 
+    color: #1a1a1a; 
+
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.contenedor {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr; 
+    grid-template-rows: 50px auto 50px; 
+    grid-template-areas:
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+    height: 100vh;
+    gap: 5px;
+}
+
+header { 
+    background-color: aqua; 
+    grid-area: header;
+}
+
+nav {
+    background-color: blue;
+    grid-area: nav;
+}
+
+main {
+    background-color: violet;
+    grid-area: main;
+}
+
+aside {
+    background-color: deeppink;
+    grid-area: aside;
+}
+
+footer {
+    background-color: coral;
+    grid-area: footer;
+}
+
+header, nav,main,aside,footer{
+    padding-left: 10px;
+    padding-top: 15px;
+}
+
+@media (max-width: 900px) {
+    .contenedor {
+        grid-template-columns: 1fr 2fr; 
+        grid-template-rows: 100px auto auto 100px; 
+        grid-template-areas:
+            "header header"
+            "nav main"
+            "nav aside"
+            "footer footer";
+        height: 100vh; 
+    }
+}
+
+@media (max-width: 600px) {
+    .contenedor {
+        grid-template-columns: 1fr; 
+        grid-template-rows: 100px 100px auto auto 100px; 
+        grid-template-areas:
+            "header"
+            "nav"
+            "main"
+            "aside"
+            "footer";
+        height: 100vh;
+    }
+}

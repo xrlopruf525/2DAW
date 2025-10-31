@@ -1,0 +1,46 @@
+body{
+    margin: 0;
+    box-sizing: border-box;
+    height: 40vh;
+}
+header{
+    background-color: chartreuse;
+    border: 2px solid blue;
+    padding: 0.5%;
+    text-align: center;
+
+}
+nav{
+    float: left;
+    background-color: pink;
+    border: 1px solid black;
+    padding-bottom: 46.7%;
+    width: 4.25%;
+
+}
+
+main{
+    float: right;
+    background-color: gray;
+    width: 95.5%;
+    border: 1px solid red ;
+    padding-bottom: 35.55%;
+}
+main article{
+    border: 2px solid black;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+    
+   
+}
+
+
+footer{
+    background-color: cadetblue;
+    clear: both;
+    padding: 0.5%;
+    text-align: center;
+
+}
+

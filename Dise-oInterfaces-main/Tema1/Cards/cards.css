@@ -1,0 +1,50 @@
+body {
+  font-family: sans-serif; 
+  height: 100vh; 
+  width: 100vw;    
+}
+
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;   
+    align-items: center;
+}
+.twitter, .instagram, .youtube {
+  flex: 0 1 15vw;
+  flex-direction: column;
+  margin-top: 1vh;
+  border: 1px solid black;
+  margin: 60px;
+  padding: 5px;
+}
+
+.logo i {
+  font-size: 40px;
+}
+
+.boton {
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+}
+
+.instagram:hover, .twitter:hover, .youtube:hover{
+    background-color: pink;
+}
+.instagram:hover .boton, 
+.twitter:hover .boton, 
+.youtube:hover .boton{
+    background-color: white;
+    color:pink;
+}
+
+@media (max-width: 600px) {
+  .cards {
+    flex-direction: column; 
+    align-items: center;    
+  }
+
+}

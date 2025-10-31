@@ -1,0 +1,164 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body { 
+  font-family: sans-serif; 
+  display: flex; 
+  flex-wrap: wrap; 
+  height: 100vh; 
+  width: 100vw;
+  text-align: center;
+}
+
+
+header { background: #0a1e35; }   
+nav { background: #e43d30; }     
+.hero { background: #3f7ab5; }    
+main { background: #1a2433; }     
+.banner { background: #f4c542; color: #000; } 
+.extra { background: #48b19b; color: #000; }  
+.image { background: #b9e1e2; color: #000; }  
+
+
+header{
+    flex: 1 0 20%;
+    padding: 10px;
+}
+nav{
+    flex: 1 0 80%;
+    padding: 10px;
+
+}
+
+.hero {
+  flex: 1 0 100%;
+  padding: 10px;
+  height: 40vh;
+}
+
+
+main {
+  flex: 1 0 50%;
+  padding: 10px;
+  height: 40vh;
+}
+
+#extraImage{
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  flex: 1 0 50%;
+
+
+}
+.image, .extra {
+  flex: 1;
+  padding: 10px;
+}
+
+.banner {
+  flex: 1 0 100%;
+  padding: 10px;
+  height: 15vh;
+
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body { 
+  font-family: sans-serif; 
+  display: flex; 
+  flex-wrap: wrap; 
+  height: 100vh; 
+  width: 100vw;
+  text-align: center;
+}
+
+header { background: #0a1e35; }   
+nav { background: #e43d30; }     
+.hero { background: #3f7ab5; }    
+main { background: #1a2433; }     
+.banner { background: #f4c542; color: #000; } 
+.extra { background: #48b19b; color: #000; }  
+.image { background: #b9e1e2; color: #000; }  
+
+/* --- Desktop layout --- */
+header {
+  flex: 1 0 20%;
+  padding: 10px;
+}
+
+nav {
+  flex: 1 0 80%;
+  padding: 10px;
+}
+
+.hero {
+  flex: 1 0 100%;
+  padding: 10px;
+  height: 40vh;
+}
+
+main {
+  flex: 1 0 50%;
+  padding: 10px;
+  height: 40vh;
+}
+
+#extraImage {
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  flex: 1 0 50%;
+}
+
+.image, .extra {
+  flex: 1;
+  padding: 10px;
+}
+
+.banner {
+  flex: 1 0 100%;
+  padding: 10px;
+  height: 15vh;
+}
+
+@media (max-width: 599px) {
+  body {
+    flex-direction: column;
+    flex-wrap: nowrap; 
+    height: 100vh; 
+  }
+
+  header { order: 1 }
+  nav { order: 2}
+  .hero { order: 3 }  
+  main { order: 4}   
+  .banner { order: 5}
+  #extraImage { 
+    order: 6; 
+ 
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image, .extra {
+    flex: none;     
+    height: 50%;    
+  }
+
+  
+  header, nav, .hero, main, .banner, #extraImage, .image, .extra {
+    width: 100%;
+  }
+}
+
+
+

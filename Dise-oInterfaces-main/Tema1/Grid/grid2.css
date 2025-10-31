@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    font-family: 'Montserrat';
+    min-height: 100vh;
+    margin: 0;
+}
+
+.contenedor{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows:  1fr 1fr;
+    grid-template-areas:
+    "team supervisor karma"
+    "team calculator karma";
+    height: 100vh;
+    gap:45px
+}
+.contenedor > div {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    height: 30vh;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.contenedor > div:nth-child(1),
+.contenedor > div:nth-child(4) {
+    margin-top: 25vh;
+}
+.contenedor > div:nth-child(1) {
+    grid-area: team;
+}
+.contenedor > div:nth-child(2) {
+    grid-area: supervisor;
+    margin-top: 10vh;
+}
+.contenedor > div:nth-child(3) {
+    grid-area: calculator;
+}
+.contenedor > div:nth-child(4) {
+    grid-area: karma;
+}
+p{
+    color: gray;
+}
