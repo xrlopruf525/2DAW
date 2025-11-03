@@ -26,7 +26,7 @@ body{
     border-radius: 10px;
     background-color: #f9f9f9;
     height: 30vh;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px black;
 }
 .contenedor > div:nth-child(1),
 .contenedor > div:nth-child(4) {
@@ -34,17 +34,49 @@ body{
 }
 .contenedor > div:nth-child(1) {
     grid-area: team;
+    border-top: 3px solid red;
 }
 .contenedor > div:nth-child(2) {
     grid-area: supervisor;
     margin-top: 10vh;
+    border-top: 3px solid blue;
 }
 .contenedor > div:nth-child(3) {
     grid-area: calculator;
+    border-top: 3px solid blue;
 }
 .contenedor > div:nth-child(4) {
     grid-area: karma;
+    border-top: 3px solid orange;
+
+}
+.contenedor > div i{
+    float: right;
+    padding: 25px;
 }
 p{
     color: gray;
+}
+
+
+@media (max-width: 600px){
+.contenedor {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "team"
+        "supervisor"
+        "calculator"
+        "karma";
+    gap: 20px;
+}
+.contenedor > div {
+    height: auto;
+    margin: 25px;
+}
+.contenedor > div:nth-child(1),
+.contenedor > div:nth-child(2),
+.contenedor > div:nth-child(4) {
+        margin-top: 0 ;
+    }
 }
