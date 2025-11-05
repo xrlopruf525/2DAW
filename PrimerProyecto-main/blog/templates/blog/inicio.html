@@ -7,5 +7,27 @@
 </head>
 <body>
     <p>Hola caracola</p>
+    <ul>   
+        {% for e in entradas%}
+        <li><a href="{% url 'detalle_post' pk=e.pk%}"> {{ e }} </a></li>
+        {%endfor%}
+    </ul>
+
+    <h1>Paginas de Ruben</h1>
+    <ul>   
+        {% for e in entradas_ruben%}
+        <li>{{ e.titulo }}</li>
+        {%endfor%}
+    </ul>
+
+    <h1>Ordenado por titulo</h1>
+    <ul>   
+        {% for e in titulos_ord%}
+        <li>{{ e }}</li>
+        {%endfor%}
+    </ul>
+
+
+
 </body>
 </html>
