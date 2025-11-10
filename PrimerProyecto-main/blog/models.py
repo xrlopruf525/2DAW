@@ -10,7 +10,7 @@ class Autor(models.Model):
 
 class Post(models.Model):
     titulo = models.CharField(max_length=200)
-    autor = models.ForeignKey(Autor)
+    autor = models.ForeignKey('Autor',on_delete=models.CASCADE, related_name='posts')
     cuerpo = models.TextField()
     email = models.EmailField(default='ruben@gmail.com')
 
