@@ -1,0 +1,107 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    font-family: 'Montserrat';
+}
+
+.contenedor{
+    height: 100vh;
+
+}
+header {
+  background-color: beige;
+  border-bottom: 2px solid black;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  height: 10vh;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 60px; 
+  width: auto;   
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid gray;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: lightgray;
+}
+
+.contenedorMain {
+    height: 60vh; 
+    position: relative;
+}
+
+.hero img.fondo {
+    width: 100%;
+    height: 60vh; 
+    display: block;
+}
+
+.hero-contenido {
+    text-align: center;
+    color: black;
+    margin-top: -200px; 
+}
+
+.hero-contenido h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.hero-contenido p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.estrellas {
+    font-size: 1.2rem;
+    color: gold;
+    margin-bottom: 15px;
+}
+
+.contenedorCards{
+  text-align: center;
+  height: 30vh;
+}
+
+.contenedorCards h1{
+  font-size: 20px;
+}
+.peliculas{
+  margin: 1vh;
+  display: flex;
+  justify-content: center;
+}
+
+.peli {
+  margin: 0.5vw;
+  flex-direction: column;
+  text-align: center;
+  height: 20vh;
+  width: 15%;
+} 
+
+.peli img{
+  height: 80%;
+}
