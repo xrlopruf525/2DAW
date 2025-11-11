@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block titulo %}Autores{% endblock %}
+
+{% block contenido %}
+
+<div class="row">
+    {% for autor in autores %}
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <h5 class="card-title">{{ autor.nombre }} {{ autor.apellido }}</h5>
+                <a href="{% url 'autor_post' autor_pk=autor.pk %}" class="btn btn-primary">Ver posts</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<a href="{% url 'inicio' %}" class="btn btn-success mt-3">Volver a la página principal</a>
+
+{% endblock %}

@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles</title>
-</head>
-<body>
-    <h1>{{ entradas_pk.titulo}}</h1>
-    {{ entradas_pk.autor }}
-    {{ entradas_pk.cuerpo }}
+{% extends 'blog/base.html' %}
 
+{% block titulo %}{{ entradas_pk.titulo }}{% endblock %}
 
-</body>
-</html>
+{% block contenido %}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ entradas_pk.titulo }}</h5>
+        <p class="card-text">{{ entradas_pk.cuerpo }}</p>
+    </div>
+</div>
+
+<a href="{% url 'autor_post' autor_pk=entradas_pk.autor.pk %}" class="btn btn-success mt-3">Volver al autor</a>
+
+{% endblock %}
