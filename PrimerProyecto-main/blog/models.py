@@ -14,5 +14,7 @@ class Post(models.Model):
     cuerpo = models.TextField()
     email = models.EmailField(default='ruben@gmail.com')
 
+    #Añadir campo de imagen
+
     def __str__(self):
         return f"({self.id}) {self.titulo} - {self.autor}"
