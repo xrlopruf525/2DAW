@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Entradas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <style>
+       html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    background-image: url('fondo_menu.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+
+
+main#menu {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalEntradas {
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+}
+
+#modalEntradas h2 {
+    margin-bottom: 20px;
+}
+
+#modalEntradas label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+#modalEntradas input,
+#modalEntradas select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#modalEntradas button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid gray;
+    background-color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#modalEntradas button:hover {
+    background-color: lightgray;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+
+        <header>
+            <img src="logo.png" alt="Logo del cine" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="cartelera.html">Cartelera</a></li>
+                    <li><a href="mapa.html">¿Dónde estamos?</a></li>                
+                </ul>
+            </nav>
+            <button onclick="window.location.href='entradas.html'">COMPRAR ENTRADAS</button>
+        </header>
+
+        <main id="menu">
+            <div id="modalEntradas">
+                <h2>Comprar Entradas</h2>
+                <form id="formEntradas">
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="pelicula">Selecciona la película:</label>
+                    <select id="pelicula" name="pelicula" required>
+                        <option value="">-- Selecciona una película --</option>
+                        <option value="bobEsponja">Bob Esponja</option>
+                        <option value="futbolisimos">Los Futbolísimos</option>
+                        <option value="delreves2">Del Revés 2</option>
+                        <option value="lilo">Lilo y Stitch</option>
+                        <option value="alvin">Alvin y las Ardillas</option>
+                        <option value="angrybirds">Angry Birds</option>
+                    </select>
+
+                    <label for="cantidad">Cantidad de entradas:</label>
+                    <input type="number" id="cantidad" name="cantidad" min="1" max="10" required>
+
+                    <button type="submit">Comprar</button>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <nav>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+            </nav>
+        </footer>
+
+    </div>
+</body>
+
+</html>
