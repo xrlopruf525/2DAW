@@ -11,6 +11,8 @@
             <div class="card-body">
                 <h5 class="card-title">{{ autor.nombre }} {{ autor.apellido }}</h5>
                 <a href="{% url 'autor_post' autor_pk=autor.pk %}" class="btn btn-primary">Ver posts</a>
+                <a href="{% url 'editar_autor' pk=autor.pk%}" class="btn btn-editar">Editar Autor</a>
+
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Autor
-from .forms import Autoform
+from .forms import Autorform, AutorModelform
 
 # Create your views here.
 
@@ -35,21 +35,37 @@ def autores(request):
 
 def autor_nuevo(request):
     if request.method == 'POST':
-        form = Autoform(request.POST)
+        form = AutorModelform(request.POST)
 
         if form.is_valid():
             #Almacenar en BD
-            nombre = form.cleaned_data['nombre']
-            apellido = form.cleaned_data['apellido']
-            edad = form.cleaned_data['edad']
+            # nombre = form.cleaned_data['nombre']
+            # apellido = form.cleaned_data['apellido']
+            # edad = form.cleaned_data['edad']
 
-            Autor.objects.create(nombre = nombre ,apellido = apellido,edad = edad)
+            # Autor.objects.create(nombre = nombre ,apellido = apellido,edad = edad)
+            form.save()
    
             return redirect('autores')
     else:
-        form = Autoform()
+        form = AutorModelform()
         
     return render(request, 'blog/autor_nuevo.html',{'form':form})
+
+def editar_autor(request, pk):
+
+    autor = get_object_or_404(Autor, id=pk)
+
+    if request.method == 'POST':
+        form = AutorModelform(request.POST, instance=autor)
+        if form.is_valid():
+            form.save()
+            return redirect('autores')
+    else:
+        form = AutorModelform(instance=autor)
+        
+    return render(request, 'blog/editar_autor.html', {'form': form})
+        
 
 
 
