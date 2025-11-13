@@ -1,14 +1,22 @@
 {% extends 'blog/base.html' %}
 
-{% block titulo %}Formulario Autor:{% endblock %}
+{% block titulo %} 
+    {% if estado == 'crear'%} 
+        Crear autor:
+    {% else %}
+        Editar autor:
+    {% endif %}
+        
+{% endblock %}
 
 {% block contenido %}
+
 
     <form action="" method="post">
         {% csrf_token %}
 
         {{ form.as_p }}
-        <input type="submit" value="Enviar">
+        <input type="submit" value="Guardar datos">
 
     </form>
 

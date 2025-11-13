@@ -7,5 +7,6 @@ urlpatterns = [
     path('autor/<int:autor_pk>', views.autor_post, name='autor_post'),
     path('autores', views.autores, name='autores'),
     path('autor/nuevo', views.autor_nuevo, name='autor_nuevo'),
-    path('autor/editar/<int:pk>', views.editar_autor, name='editar_autor')
+    path('autor/editar/<int:pk>', views.editar_autor, name='editar_autor'),
+    path('autor/eliminar/<int:pk>', views.eliminar_autor, name='eliminar_autor'),
 ]

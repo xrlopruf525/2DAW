@@ -49,8 +49,10 @@ def autor_nuevo(request):
             return redirect('autores')
     else:
         form = AutorModelform()
+
+    estado = 'crear'
         
-    return render(request, 'blog/autor_nuevo.html',{'form':form})
+    return render(request, 'blog/autor_nuevo.html',{'form':form, 'estado':estado})
 
 def editar_autor(request, pk):
 
@@ -63,8 +65,19 @@ def editar_autor(request, pk):
             return redirect('autores')
     else:
         form = AutorModelform(instance=autor)
-        
-    return render(request, 'blog/editar_autor.html', {'form': form})
+
+    estado = 'editar'
+
+    return render(request, 'blog/autor_nuevo.html', {'form': form, 'estado':estado})
+
+def eliminar_autor(request,pk):
+    autor = get_object_or_404(Autor, id=pk)
+
+    if request.method == 'POST':
+        autor.delete()
+        return redirect('autores')
+    else:
+        return render(request, 'blog/eliminar_autor.html', {'autor': autor})
         
 
 
