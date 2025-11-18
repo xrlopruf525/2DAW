@@ -1,0 +1,14 @@
+{% extends 'recetasapp/base.html' %}
+    
+{% block content %}
+    <h1>Pagina Principal de ingredientes</h1>
+
+    <ul>
+        {% for ingrediente in ingredientes%}
+            <li>{{ingrediente}}</li>
+        {% empty %}
+            <li>No hay ingredientes aun</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
