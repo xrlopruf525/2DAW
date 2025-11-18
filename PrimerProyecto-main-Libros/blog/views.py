@@ -29,6 +29,8 @@ def autor_post(request, autor_pk):
 
 def autores(request):
     autores=Autor.objects.all()
+
+    
     contexto ={'autores': autores}
 
     return render(request, 'blog/autores.html', contexto)
