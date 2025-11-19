@@ -1,0 +1,227 @@
+@font-face {
+    font-family: 'Elems';
+    src: url('font/ElmsSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ElemsBold';
+    src: url('font/ElmsSans-SemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body{
+    height: 100vh;
+    width: 100vw;
+    font-family: Elems;
+}
+.contenedor{
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+  border-bottom: 2px solid black;
+  display: flex;
+  align-items: center;
+  height: 10vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+}
+
+.logo {
+  height: 60px; 
+  margin-left: 25vh;
+  padding: 5px; 
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin-left: 70vh;
+}
+
+main{
+    height: 80vh;
+}
+
+main img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover; 
+  display: block;
+  position: relative; 
+  z-index: auto;
+}
+
+.hero-contenido {
+    text-align: center;
+    color: black;
+    height: 60vh; 
+    position: relative;
+    z-index: 1;
+    top: -50%;
+
+}
+
+.hero-contenido h1 {
+    font-size: 64px;
+    margin-bottom: 5vh;
+    color: white;
+}
+
+.boton {
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: gray;
+  text-decoration: none;
+  color:white;
+}
+
+.boton:hover {
+  background-color: lightgray;
+}
+
+
+.imagenesComida {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr; 
+      grid-template-rows: 1fr 1fr; 
+      grid-template-areas:
+        "p1  p2  p3"
+        "p4  p4  p5";
+      gap: 50px;
+      padding: 20px;
+      flex: 1;
+      width: 70vw;
+      margin-left: 12vw;
+    }
+
+.comida:nth-child(1) { grid-area: p1; }
+.comida:nth-child(2) { grid-area: p2; }
+.comida:nth-child(3) { grid-area: p3; }
+.comida:nth-child(4) { grid-area: p4; }
+.comida:nth-child(5) { grid-area: p5; }
+
+.comida img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+footer {
+    background-color: black;
+    height: 15vh;
+    color: white;
+    display: flex;
+      justify-content: space-between;
+
+}
+
+.about{
+  margin-left: 20vh;
+}
+.malaga{
+  margin-right: 20vh;
+}
+.sevilla{
+  margin-left: 80vh;;
+}
+footer div p{
+  font-size: 10px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: white;
+    }
+
+    header,  .boton{
+        background-color: #222;
+        color: white;   
+     }
+
+    header nav ul li {
+        color: white;
+    }
+
+
+    .boton:hover {
+        background-color: #ffeb3b;
+        color: black;
+    }
+
+}
+
+@media (max-width: 850px) {
+
+  header {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  nav ul {
+    margin-left: 0;
+    gap: 15px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .logo {
+    margin-left: 0;
+    margin-bottom: 8px;
+  }
+
+  .imagenesComida {
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: auto; 
+        grid-template-areas:
+          "p1  p2"
+          "p3  p5"
+          "p4  p4";
+  }
+
+  footer{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 20px 10px;
+    gap: 8px;
+    text-align: center;
+  }
+
+  footer div{
+    width: 100%;
+    max-width: 850px;
+    margin: 0;
+    padding: 4px 0;
+  }
+
+  .about, .malaga, .sevilla{
+    margin: 0;
+    display: block;
+  }
+
+    
+}

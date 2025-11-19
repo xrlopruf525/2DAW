@@ -86,7 +86,7 @@ button:hover {
 .hero-contenido {
     text-align: center;
     color: black;
-    position: absolute; 
+    position: relative; 
     top: 10%;
     left: 20%;
     z-index: 1; 
