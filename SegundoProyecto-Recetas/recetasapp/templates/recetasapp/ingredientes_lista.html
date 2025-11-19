@@ -3,6 +3,26 @@
 {% block content %}
     <h1>Pagina Principal de ingredientes</h1>
 
+<form action="" method="get">
+    <label for="categoria">Categoría:</label>
+    <select name="categoria" id="categoria">
+        <option value="">Todos</option>
+        {% for categoria in categorias %}
+            <option value="{{ categoria.id }}"
+                {% if request.GET.categoria == categoria.id|stringformat:"s" %}selected{% endif %}>
+                {{ categoria.nombre }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label for="refrigerado">Refrigerado:</label>
+    <input type="checkbox" id="refrigerado" name="refrigerado" value="1"
+        {% if request.GET.refrigerado == "1" %}checked{% endif %}>
+
+    <input type="submit" value="Filtrar">
+</form>
+
+
     <ul>
         {% for ingrediente in ingredientes%}
             <li>{{ingrediente}}</li>
