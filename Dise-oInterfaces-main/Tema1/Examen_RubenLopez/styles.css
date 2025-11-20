@@ -57,12 +57,17 @@ main{
 main img {
   width: 100%;
   height: 60vh;
-  object-fit: cover; 
+  object-fit: cover;
   display: block;
-  position: relative; 
-  z-index: auto;
+  position: relative;
+
+  opacity: 0.5;              
+  transition: opacity 1.5s ease;
 }
 
+main img:hover {
+  opacity: 1;                
+}
 .hero-contenido {
     text-align: center;
     color: black;
