@@ -1,6 +1,23 @@
 {% extends 'recetasapp/base.html' %}
-    
-{% block content %}
-    <h1>Pagina Principal</h1>
 
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1 class="mb-5">Bienvenido a la App de Recetas</h1>
+
+    <div class="row justify-content-center g-4">
+        <!-- Botón Ingredientes -->
+        <div class="col-12 col-md-4">
+            <a href="{% url 'ingredientes_lista' %}" class="btn btn-primary btn-lg w-100 shadow">
+                Ingredientes
+            </a>
+        </div>
+
+         <!-- Botón Categoria -->
+        <div class="col-12 col-md-4">
+            <a href="{% url 'categoria_lista' %}" class="btn btn-success btn-lg w-100 shadow">
+                Categorías
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

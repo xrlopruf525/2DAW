@@ -1,0 +1,20 @@
+{% extends 'recetasapp/base.html' %}
+
+{% block titulo %} 
+    {% if estado == 'crear'%} 
+        Crear Ingrediente
+    {% else %}
+        Editar Ingrediente
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{% url 'ingredientes_lista' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

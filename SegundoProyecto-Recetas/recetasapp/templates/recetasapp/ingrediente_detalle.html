@@ -1,0 +1,18 @@
+{% extends 'recetasapp/base.html' %}
+
+{% block titulo %}{{ ingrediente.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ ingrediente.nombre }}</h5>
+            <p class="card-text"><strong>Categoría:</strong> {{ ingrediente.categoria.nombre }}</p>
+            <p class="card-text"><strong>Refrigerado:</strong> 
+                {% if ingrediente.refrigerado %}Sí{% else %}No{% endif %}
+            </p>
+        </div>
+    </div>
+    <a href="{% url 'ingredientes_lista' %}" class="btn btn-primary mt-3">Volver a Ingredientes</a>
+</div>
+{% endblock %}
