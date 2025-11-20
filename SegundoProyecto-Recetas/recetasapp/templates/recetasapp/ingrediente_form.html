@@ -1,20 +1,23 @@
 {% extends 'recetasapp/base.html' %}
 
-{% block titulo %} 
-    {% if estado == 'crear'%} 
-        Crear Ingrediente
-    {% else %}
-        Editar Ingrediente
-    {% endif %}
-{% endblock %}
-
 {% block content %}
-<div class="container mt-4">
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Guardar</button>
-        <a href="{% url 'ingredientes_lista' %}" class="btn btn-secondary">Cancelar</a>
-    </form>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg w-75">
+        <div class="card-header {% if estado == 'crear' %}bg-success{% else %}bg-warning{% endif %} text-white">
+            <h3 class="mb-0">
+                {% if estado == 'crear' %}Crear Ingrediente{% else %}Editar Ingrediente{% endif %}
+            </h3>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-flex justify-content-between mt-3">
+                    <button type="submit" class="btn btn-success">💾 Guardar</button>
+                    <a href="{% url 'ingredientes_lista' %}" class="btn btn-secondary">⬅️ Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

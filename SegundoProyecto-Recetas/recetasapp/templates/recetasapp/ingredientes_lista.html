@@ -58,9 +58,9 @@
                         </td>
                         <td>
                         <td>
-                            <a href="{% url 'ingrediente_detalle' ingrediente.id %}" class="btn btn-info btn-sm me-1">Ver</a>
-                            <a href="{% url 'ingrediente_editar' ingrediente.id %}" class="btn btn-warning btn-sm me-1">Editar</a>
-                            <a href="{% url 'ingrediente_eliminar' ingrediente.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="{% url 'ingrediente_detalle' ingrediente.id %}" class="btn btn-info btn-sm me-1">👁️</a>
+                            <a href="{% url 'ingrediente_editar' ingrediente.id %}" class="btn btn-warning btn-sm me-1">✏️</a>
+                            <a href="{% url 'ingrediente_eliminar' ingrediente.id %}" class="btn btn-danger btn-sm">🗑️</a>
                         </td>
 
                         </td>
@@ -77,11 +77,11 @@
     <!-- Botón para crear nuevo ingrediente -->
     <div class="mt-3">
         <a href="{% url 'ingrediente_crear' %}" class="btn btn-success">
-            Crear nuevo ingrediente
+            Crear nuevo ingrediente➕
         </a>
 
         <a href="{% url 'inicio' %}" class="btn btn-primary mt-3">
-        Volver a la página principal
+        Volver a la página principal⬅️
         </a>
     </div>
 </div>
