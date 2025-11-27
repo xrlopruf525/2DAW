@@ -59,16 +59,19 @@ def ingrediente_crear(request):
     return render(request, 'recetasapp/ingrediente_form.html', {'formset': formset, 'estado': estado})
 
 def ingrediente_editar(request, pk):
-    ingrediente = get_object_or_404(Ingredientes, pk=pk)
+    SetIngredienteFormSet = modelformset_factory(Ingredientes, form=SetIngredienteForm, extra=0)
+    ingrediente = Ingredientes.objects.filter(pk=pk)
+    
     if request.method == 'POST':
-        form = IngredienteForm(request.POST, instance=ingrediente)
-        if form.is_valid():
-            form.save()
+        formset = SetIngredienteFormSet(request.POST, queryset=ingrediente)
+        if formset.is_valid():
+            formset.save()
             return redirect('ingredientes_lista')
     else:
-        form = IngredienteForm(instance=ingrediente)
+        formset = SetIngredienteFormSet(queryset=ingrediente)
+
     estado = 'editar'
-    return render(request, 'recetasapp/ingrediente_form.html', {'form': form, 'estado': estado})
+    return render(request, 'recetasapp/ingrediente_form.html', {'formset': formset, 'estado': estado})
 
 def ingrediente_detalle(request, pk):
     ingrediente = get_object_or_404(Ingredientes, pk=pk)
