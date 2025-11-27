@@ -18,3 +18,9 @@ class IngredienteForm(forms.ModelForm):
         if categoria and categoria.nombre.lower() in ["prohibida", "genérica"]:
             raise forms.ValidationError(f"La categoría '{categoria.nombre}' no está permitida")
         return cleaned_data
+    
+
+class SetIngredienteForm(forms.ModelForm):
+    class Meta:
+        model = Ingredientes
+        fields = ['nombre', 'categoria', 'refrigerado']

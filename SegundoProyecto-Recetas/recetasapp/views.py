@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import IngredienteForm
+from .forms import *
 from .models import Ingredientes, CategoriaIngrediente
+from django.forms import formset_factory
 
 # Create your views here.
 def inicio(request):
