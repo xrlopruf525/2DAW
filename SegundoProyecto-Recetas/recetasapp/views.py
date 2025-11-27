@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import Ingredientes, CategoriaIngrediente
-from django.forms import formset_factory
+from django.forms import formset_factory, modelformset_factory
 
 # Create your views here.
 def inicio(request):
@@ -33,26 +33,27 @@ def categoria_lista(request):
 
 
 def ingrediente_crear(request):
-    SetIngredienteFormSet = formset_factory(SetIngredienteForm, extra=3)
+    SetIngredienteFormSet = modelformset_factory(Ingredientes, form=SetIngredienteForm, extra=3)
 
     if request.method == 'POST':
         formset = SetIngredienteFormSet(request.POST)
         if formset.is_valid():
-            for form in formset:
-                if form.cleaned_data:
-                    nombre = form.cleaned_data.get('nombre')
-                    categoria = form.cleaned_data.get('categoria')
-                    refrigerado = form.cleaned_data.get('refrigerado')
+            # for form in formset:
+            #     if form.cleaned_data:
+            #         nombre = form.cleaned_data.get('nombre')
+            #         categoria = form.cleaned_data.get('categoria')
+            #         refrigerado = form.cleaned_data.get('refrigerado')
 
-                    if nombre and categoria is not None:
-                        Ingredientes.objects.create(
-                            nombre=nombre,
-                            categoria=categoria,
-                            refrigerado=refrigerado
-                        )
+                   
+            #         Ingredientes.objects.create(
+            #             nombre=nombre,
+            #             categoria=categoria,
+            #             refrigerado=refrigerado
+            #         )  ESTE ES EL FORMSET
+            formset.save() # ESTO ES PARA EL MODELFORMSET
             return redirect('ingredientes_lista')
     else:
-        formset = SetIngredienteFormSet()
+        formset = SetIngredienteFormSet(queryset=Ingredientes.objects.none())
 
     estado = 'crear'
     return render(request, 'recetasapp/ingrediente_form.html', {'formset': formset, 'estado': estado})
