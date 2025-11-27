@@ -57,6 +57,7 @@
                             {% endif %}
                         </td>
                         <td>
+                            {{ingrediente.medida}}
                         <td>
                             <a href="{% url 'ingrediente_detalle' ingrediente.id %}" class="btn btn-info btn-sm me-1">👁️</a>
                             <a href="{% url 'ingrediente_editar' ingrediente.id %}" class="btn btn-warning btn-sm me-1">✏️</a>

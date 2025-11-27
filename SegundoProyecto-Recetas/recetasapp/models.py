@@ -3,8 +3,14 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 # Create your models here.
-# class CategoriaChoices(models.TextChoices):
-#     LEGUMBRES = "LE", "Legumbres"
+
+
+class Medida(models.TextChoices):
+    GRAMOS = "g", "Gramos"
+    KILOGRAMOS = "kg", "Kilogramos"
+    LITROS = "l", "Litros"
+    MILILITROS = "ml", "Mililitros"
+    UNIDAD = "u", "Unidad"
 
 class CategoriaIngrediente(models.Model):
     nombre = models.CharField(max_length=50)
@@ -20,6 +26,11 @@ class Ingredientes(models.Model):
     nombre = models.CharField(max_length=50, validators=[validate_nombre])
     categoria = models.ForeignKey('CategoriaIngrediente', on_delete=models.CASCADE)
     refrigerado = models.BooleanField(default=False)
+    medida = models.CharField(
+        max_length=5,
+        choices=Medida.choices,
+        default=Medida.GRAMOS
+    )
 
     def clean(self):
         if self.nombre.lower() == "verdura":

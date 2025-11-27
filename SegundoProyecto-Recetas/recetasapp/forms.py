@@ -4,7 +4,7 @@ from .models import Ingredientes
 class IngredienteForm(forms.ModelForm):
     class Meta:
         model = Ingredientes
-        fields = ['nombre', 'categoria', 'refrigerado']
+        fields = ['nombre', 'categoria', 'refrigerado', 'medida']
 
     def clean_nombre(self):
         nombre = self.cleaned_data['nombre']
@@ -23,4 +23,4 @@ class IngredienteForm(forms.ModelForm):
 class SetIngredienteForm(forms.ModelForm):
     class Meta:
         model = Ingredientes
-        fields = ['nombre', 'categoria', 'refrigerado']
+        fields = ['nombre', 'categoria', 'refrigerado', 'medida']
