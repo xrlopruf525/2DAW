@@ -11,7 +11,10 @@
         <div class="card-body">
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ formset.management_form }}
+                    {% for form in formset %}
+                        {{ form.as_p }}
+                    {% endfor %}
 
                 <div class="d-flex justify-content-between mt-3">
                     <button type="submit" class="btn btn-success">💾 Guardar</button>

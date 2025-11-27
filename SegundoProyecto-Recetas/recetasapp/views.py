@@ -33,16 +33,29 @@ def categoria_lista(request):
 
 
 def ingrediente_crear(request):
+    SetIngredienteFormSet = formset_factory(SetIngredienteForm, extra=3)
+
     if request.method == 'POST':
-        form = IngredienteForm(request.POST)
-        if form.is_valid():
-            form.save()
+        formset = SetIngredienteFormSet(request.POST)
+        if formset.is_valid():
+            for form in formset:
+                if form.cleaned_data:
+                    nombre = form.cleaned_data.get('nombre')
+                    categoria = form.cleaned_data.get('categoria')
+                    refrigerado = form.cleaned_data.get('refrigerado')
+
+                    if nombre and categoria is not None:
+                        Ingredientes.objects.create(
+                            nombre=nombre,
+                            categoria=categoria,
+                            refrigerado=refrigerado
+                        )
             return redirect('ingredientes_lista')
     else:
-        form = IngredienteForm()
-    estado = 'crear'
-    return render(request, 'recetasapp/ingrediente_form.html', {'form': form, 'estado': estado})
+        formset = SetIngredienteFormSet()
 
+    estado = 'crear'
+    return render(request, 'recetasapp/ingrediente_form.html', {'formset': formset, 'estado': estado})
 
 def ingrediente_editar(request, pk):
     ingrediente = get_object_or_404(Ingredientes, pk=pk)
