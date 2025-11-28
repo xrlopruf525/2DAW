@@ -1,38 +1,46 @@
-const boton = document.getElementById("boton");
-const contenedor = document.getElementById("tablero");
+// Asigna la función "crearTablero" al evento click del botón con id="boton"
+document.getElementById("boton").addEventListener("click", crearTablero);
 
-boton.addEventListener("click", () => {
-  contenedor.innerHTML = "";
+// Función que crea un tablero de ajedrez 8x8 con coordenadas
+function crearTablero() {
+  const filas = 8; // Número de filas del tablero
+  const columnas = 8; // Número de columnas del tablero
+  let celdaNegra = false; // Bandera para alternar celdas negras y blancas
 
-  const tabla = document.createElement("table");
+  // Crea el elemento <table> que contendrá el tablero
+  let tabla = document.createElement("table");
 
-  const filas = 8;
-  const columnas = 8;
+  let idFila = 8; // Contador de filas para las coordenadas (8 a 1)
+  
+  // Bucle para crear las filas
+  for (let i = 0; i < filas; i++) {
+    let fila = tabla.insertRow(); // Inserta una nueva fila en la tabla
+    let idColumna = 65; // Código ASCII de 'A', para las columnas A-H
 
-  for (let f = 1; f <= filas; f++) {
-    const fila = document.createElement("tr");
+    // Bucle para crear las celdas dentro de cada fila
+    for (let j = 0; j < columnas; j++) {
+      let celda = fila.insertCell(); // Inserta una nueva celda
 
-    for (let c = 1; c <= columnas; c++) {
-      const celda = document.createElement("td");
+      // Crea el texto de la celda usando la letra de columna + número de fila
+      let textoCelda = document.createTextNode(
+        String.fromCharCode(idColumna) + idFila
+      );
+      celda.append(textoCelda); // Añade el texto a la celda
+      idColumna += 1; // Avanza a la siguiente letra de columna
 
-      celda.textContent = `${c}:${f}`;
-
-      if ((f + c) % 2 === 0) {
-        celda.style.backgroundColor = "white";
-      } else {
+      // Si la bandera celdaNegra es true, pinta la celda de negro y texto blanco
+      if (celdaNegra) {
         celda.style.backgroundColor = "black";
         celda.style.color = "white";
       }
 
-      celda.style.width = "40px";
-      celda.style.height = "40px";
-
-      fila.appendChild(celda);
+      celdaNegra = !celdaNegra; // Alterna el color para la siguiente celda
     }
 
-    tabla.appendChild(fila);
+    idFila -= 1; // Baja al siguiente número de fila
+    celdaNegra = !celdaNegra; // Alterna la celda inicial de la siguiente fila para mantener el patrón de ajedrez
   }
 
-  contenedor.appendChild(tabla);
-});
-
+  // Inserta la tabla generada dentro del elemento con id="tablero"
+  document.getElementById("tablero").append(tabla);
+}
