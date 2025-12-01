@@ -1,0 +1,126 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: #87CEEB;
+}
+
+#ej2 {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+#animacion-cielo {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#nube1, #nube2, #nube3, #nube4 {
+  position: absolute;
+  width: 150px;
+  opacity: 0.8;
+}
+
+#nube1 {
+  top: 60px;
+  animation: moverNube1 35s linear infinite;
+}
+#nube2 {
+  top: 120px;
+  animation: moverNube2 38s linear infinite;
+}
+#nube3 {
+  top: 180px;
+  animation: moverNube3 32s linear infinite;
+}
+#nube4 {
+  top: 90px;
+  animation: moverNube4 40s linear infinite;
+}
+
+@keyframes moverNube1 {
+  0% { left: -200px; }
+  100% { left: 100vw; }
+}
+@keyframes moverNube2 {
+  0% { left: -300px; }
+  100% { left: 100vw; }
+}
+@keyframes moverNube3 {
+  0% { left: -250px; }
+  100% { left: 100vw; }
+}
+@keyframes moverNube4 {
+  0% { left: -350px; }
+  100% { left: 100vw; }
+}
+
+
+#sol, #luna {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 100%; 
+    left: -15%;
+}
+
+#sol {
+    animation: rutaX 40s linear infinite, rutaY 40s infinite;
+}
+
+#luna {
+    animation: rutaX 40s linear infinite, rutaY 40s infinite;
+    animation-delay: -20s; 
+}
+
+@keyframes rutaX {
+    0% { left: -15%; }
+    50% { left: 115%; }
+    100% { left: 115%; }
+}
+
+@keyframes rutaY {
+    0% { top: 100%; animation-timing-function: ease-out; }
+    25% { top: 0%; animation-timing-function: ease-in; }
+    50% { top: 100%; }
+    100% { top: 100%; }
+}
+
+@keyframes ciclo-cielo {
+    0% { background-color: #ff9a9e; } 
+    25% { background-color: #DBFEFE; } 
+    50% { background-color: #2c3e50; } 
+    75% { background-color: #00112B; } 
+    100% { background-color: #ff9a9e; } 
+}
+
+
+#animacion-cielo {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: #00112B; 
+    animation: ciclo-cielo 40s linear infinite;
+}
+
+@keyframes ciclo-cielo {
+    0%   { background-color: #00112B; } 
+    25%  { background-color: #DBFEFE; } 
+    75%  { background-color: #00112B; } 
+    100% { background-color: #00112B; } 
+}
+
+
+#agua {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15%; 
+    background: linear-gradient(to bottom, #006994, #00334e);
+    z-index: 20; 
+}
