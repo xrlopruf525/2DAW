@@ -87,26 +87,20 @@ def ingrediente_eliminar(request, pk):
 
 def relaciones(request):
     recetas = Receta.objects.all()
-
     ingredientes = Ingredientes.objects.all()
 
     return render(request, 'recetasapp/relaciones.html', {'recetas':recetas, 'ingredientes':ingredientes})
 
-def receta_editar(request, pk):
-   
+
+def receta_detalle(request, pk):
     receta = get_object_or_404(Receta, pk=pk)
-    
-    if request.method == 'POST':
-        form = RecetaForm(request.POST, instance=receta)
-        if form.is_valid():
-            form.save()
-            return redirect('relaciones')  
-    else:
-        form = RecetaForm(instance=receta)
-    
-    context = {
-        'form': form,
-        'receta': receta
-    }
-    
-    return render(request, 'recetasapp/receta_editar.html', context)
+    ingredientes = Ingredientes.objects.all()
+    return render(request, 'recetasapp/receta_detalle.html', {'receta':receta, 'ingredientes':ingredientes})
+
+def receta_agregar_ingrediente(request, receta_pk, ingrediente_pk):
+    receta = get_object_or_404(Receta, pk=receta_pk)
+    ingrediente = get_object_or_404(Ingredientes, pk=ingrediente_pk)
+
+    receta.ingredientes.add(ingrediente)
+
+    return redirect('receta_detalle', pk=receta_pk)
