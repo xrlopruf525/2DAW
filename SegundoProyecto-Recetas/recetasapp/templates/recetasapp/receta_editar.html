@@ -1,0 +1,30 @@
+{% extends 'recetasapp/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <h2>Editar Receta: {{ receta.nombre }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar cambios</button>
+    </form>
+
+    <hr>
+
+    <h3>Ingredientes actuales:</h3>
+    <ul>
+        {% for ingrediente in receta.ingredientes.all %}
+            <li>{{ ingrediente.nombre }}</li>
+        {% empty %}
+            <li>No hay ingredientes asociados</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <a href="{% url 'relaciones' %}">⬅️ Volver</a>
+
+</div>
+{% endblock %}
