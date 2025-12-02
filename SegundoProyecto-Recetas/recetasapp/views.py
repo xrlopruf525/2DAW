@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
-from .models import Ingredientes, CategoriaIngrediente
+from .models import *
 from django.forms import formset_factory, modelformset_factory
 
 # Create your views here.
@@ -83,4 +83,12 @@ def ingrediente_eliminar(request, pk):
         ingrediente.delete()
         return redirect('ingredientes_lista')
     return render(request, 'recetasapp/ingrediente_eliminar.html', {'ingrediente': ingrediente})
+
+
+def relaciones(request):
+    recetas = Receta.objects.all()
+
+    ingredientes = Ingredientes.objects.all()
+
+    return render(request, 'recetasapp/relaciones.html', {'recetas':recetas, 'ingredientes':ingredientes})
 

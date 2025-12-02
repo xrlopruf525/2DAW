@@ -40,3 +40,12 @@ class Ingredientes(models.Model):
 
     def __str__(self):
         return f'{self.nombre} ({self.categoria})'
+    
+
+class Receta(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    ingredientes = models.ManyToManyField(Ingredientes, related_name='recetas')
+
+    def __str__(self):
+        return f'{self.nombre}'
