@@ -1,26 +1,31 @@
-const label = document.getElementById("captcha");
-const p = document.getElementById("code");
-const form = document.forms["formulario"];
-const input = document.getElementById("verify");
+document
+  .getElementById("captcha")
+  .addEventListener("mouseover", muestraCaptcha);
+document.getElementById("captcha").addEventListener("mouseout", ocultaCaptcha);
+formulario.addEventListener("submit", validarFormulario);
 
-let codigo = "";
+function muestraCaptcha() {
+  const number = random(1000, 9999);
+  const code = document.getElementById("code");
+  const nodoCaptchaNuevo = document.createTextNode(number);
+  code.style.visibility = "visible";
+  code.childNodes[0].replaceWith(nodoCaptchaNuevo); //Es childNodes[0] porque sustituimos el nodo hoja (texto)
+}
 
-// Al pasar el ratón: generar y mostrar el código
-label.addEventListener("mouseover", function () {
-  codigo = "" + (Math.floor(Math.random() * 9000) + 1000);
-  p.textContent = codigo;
-  p.style.visibility = "visible";
-});
+function ocultaCaptcha() {
+  document.getElementById("code").style.visibility = "hidden";
+}
 
-// Al quitar el ratón: ocultar el código
-label.addEventListener("mouseout", function () {
-  p.style.visibility = "hidden";
-});
-
-// Al enviar el formulario: comprobar
-form.addEventListener("submit", function (e) {
-  if (input.value !== codigo) {
-    e.preventDefault();
-    alert("Código incorrecto");
+function validarFormulario(event) {
+  const captchaUsuario = document.getElementById("verify").value;
+  const captchaCorrecto = document.getElementById("code").textContent;
+  const aciertoCaptcha = captchaCorrecto === captchaUsuario;
+  if (!aciertoCaptcha) {
+    alert("Captcha Incorrecto");
+    event.preventDefault();
   }
-});
+}
+
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
