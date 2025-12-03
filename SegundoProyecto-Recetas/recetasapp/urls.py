@@ -6,6 +6,7 @@ urlpatterns = [
     path('relaciones', views.relaciones, name='relaciones'),
     path('receta/<int:pk>', views.receta_detalle, name='receta_detalle'),
     path('receta/<int:receta_pk>/quitar_ingrediente/<int:ingrediente_pk>', views.receta_quitar_ingrediente, name='receta_quitar_ingrediente'),    
+    path('receta/<int:receta_pk>/modificar_ingrediente/<int:ingrediente_pk>', views.receta_modificar_ingrediente, name='receta_modificar_ingrediente'),    
     path('ingredientes', views.ingredientes_lista, name='ingredientes_lista'),
     path('categorias', views.categoria_lista, name='categoria_lista'),
     path('ingredientes/crear/', views.ingrediente_crear, name='ingrediente_crear'),

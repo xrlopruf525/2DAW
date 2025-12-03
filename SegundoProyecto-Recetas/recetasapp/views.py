@@ -102,12 +102,8 @@ def receta_detalle(request, pk):
         ingrediente = get_object_or_404(Ingredientes, pk=ingrediente_pk)
 
         if form.is_valid():
-            IngredienteReceta.objects.create(
-                receta=receta,
-                ingrediente=ingrediente,
-                cantidad=form.cleaned_data['cantidad'],
-                unidad_medida=form.cleaned_data['unidad_medida']
-            )
+            form.instance.receta = receta
+            form.save()
             return redirect('receta_detalle', pk=pk)
     else:
         form = IngredienteRecetaForm()
@@ -115,7 +111,31 @@ def receta_detalle(request, pk):
     return render(request, 'recetasapp/receta_detalle.html', {
         'receta': receta,
         'ingredientes': ingredientes,
-        'form': form
+        'form': form,
+        'estado': 'crear'
+    })
+
+def receta_modificar_ingrediente(request, receta_pk, ingrediente_pk):
+    receta = get_object_or_404(Receta, pk=receta_pk)
+    ingrediente_receta = get_object_or_404(
+        IngredienteReceta,
+        receta=receta,
+        ingrediente_id=ingrediente_pk
+    )
+
+    if request.method == 'POST':
+        form = IngredienteRecetaForm(request.POST, instance=ingrediente_receta)
+        if form.is_valid():
+            form.save()
+            return redirect('receta_detalle', pk=receta_pk)
+    else:
+        form = IngredienteRecetaForm(instance=ingrediente_receta)
+
+    return render(request, 'recetasapp/receta_detalle.html', {
+        'receta': receta,
+        'ingrediente_receta': ingrediente_receta,
+        'form': form,
+        'estado': 'editar'
     })
 
 
@@ -126,4 +146,8 @@ def receta_quitar_ingrediente(request, receta_pk, ingrediente_pk):
     receta.ingredientes.remove(ingrediente)
 
     return redirect('receta_detalle', pk=receta_pk)
+
+
+
+
 

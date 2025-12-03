@@ -56,5 +56,8 @@ class IngredienteReceta(models.Model):
     cantidad = models.FloatField()
     unidad_medida = models.CharField(max_length=2, choices=Medida)
 
+    class Meta:
+        unique_together = ('receta', 'ingrediente') 
+
     def __str__(self):
         return f'{self.receta} - {self.ingrediente.nombre}'

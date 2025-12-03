@@ -1,33 +1,56 @@
 {% extends 'recetasapp/base.html' %}
 
 {% block content %}
-<h1>Receta: {{ receta.nombre }}</h1>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg w-75">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Receta: {{ receta.nombre }}</h3>
+        </div>
+        <div class="card-body">
+            <h5>Ingredientes actuales:</h5>
+            <ul class="list-group mb-4">
+                {% for ingrediente_receta in receta.ingredientereceta_set.all %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            {{ ingrediente_receta.ingrediente.nombre }} -
+                            {{ ingrediente_receta.cantidad }} {{ ingrediente_receta.unidad_medida }}
+                        </div>
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'receta_modificar_ingrediente' receta.pk ingrediente_receta.ingrediente.pk %}" class="btn btn-sm btn-primary">Modificar</a>                        
+                            <a href="{% url 'receta_quitar_ingrediente' receta.pk ingrediente_receta.ingrediente.pk %}" class="btn btn-sm btn-danger">Quitar</a>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No hay ingredientes aún.</li>
+                {% endfor %}
+            </ul>
 
-<h2>Ingredientes actuales:</h2>
-<ul>
-    {% for ingrediente_receta in receta.ingredientereceta_set.all %}
-        <li>
-            {{ ingrediente_receta.ingrediente.nombre }} -
-            {{ ingrediente_receta.cantidad }} {{ ingrediente_receta.unidad_medida }}
-            <a href="{% url 'receta_quitar_ingrediente' receta.pk ingrediente_receta.ingrediente.pk %}">Quitar</a>
-        </li>
-    {% empty %}
-        <li>No hay ingredientes aún.</li>
-    {% endfor %}
-</ul>
 
-<h2>Añadir ingrediente:</h2>
+            <div class="card-header {% if estado == 'crear' %}bg-success{% else %}bg-warning{% endif %} text-white">
+                <h3 class="mb-0">
+                    {% if estado == 'crear' %}
+                        Crear Ingrediente
+                    {% else %}
+                        Editar Ingrediente
+                    {% endif %}
+                </h3>
+            </div>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Agregar ingrediente</button>
-</form>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-flex justify-content-between mt-3">
+                    <button type="submit" class="btn {% if estado == 'crear' %}btn-success{% else %}btn-warning{% endif %}">
+                        💾 Guardar
+                    </button>
+                    <a href="{% url 'receta_detalle' receta.pk %}" class="btn btn-secondary">⬅️ Cancelar</a>
+                </div>
+            </form>
 
 
-<div class="card-footer d-flex justify-content-between">
-    <a href="{% url 'relaciones' %}" class="btn btn-secondary">
-    ⬅️ Volver
-    </a>
+            <div class="card-footer d-flex justify-content-between">
+                <a href="{% url 'relaciones' %}" class="btn btn-secondary">⬅️ Volver</a>
+            </div>
+    </div>
 </div>
 {% endblock %}
