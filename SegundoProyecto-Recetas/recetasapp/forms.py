@@ -1,5 +1,5 @@
 from django import forms
-from .models import Ingredientes, Receta
+from .models import Ingredientes, Receta, IngredienteReceta
 
 class IngredienteForm(forms.ModelForm):
     class Meta:
@@ -26,7 +26,7 @@ class SetIngredienteForm(forms.ModelForm):
         fields = ['nombre', 'categoria', 'refrigerado', 'medida']
 
 
-class RecetaForm(forms.ModelForm):
+class IngredienteRecetaForm(forms.ModelForm):
      class Meta:
-        model = Receta
-        fields = '__all__'
+        model = IngredienteReceta
+        fields = ['ingrediente', 'cantidad', 'unidad_medida']

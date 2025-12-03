@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(CategoriaIngrediente)
 admin.site.register(Ingredientes)
 admin.site.register(Receta)
+admin.site.register(IngredienteReceta)

@@ -1,18 +1,33 @@
 {% extends 'recetasapp/base.html' %}
 
 {% block content %}
-<h1>Receta: {{receta.nombre}} </h1>
-<ul>
-{% for ingrediente in receta.ingredientes.all %}
-    <li>{{ ingrediente.nombre }}</a> </li>
+<h1>Receta: {{ receta.nombre }}</h1>
 
-{% endfor %}
+<h2>Ingredientes actuales:</h2>
+<ul>
+    {% for ingrediente_receta in receta.ingredientereceta_set.all %}
+        <li>
+            {{ ingrediente_receta.ingrediente.nombre }} -
+            {{ ingrediente_receta.cantidad }} {{ ingrediente_receta.unidad_medida }}
+            <a href="{% url 'receta_quitar_ingrediente' receta.pk ingrediente_receta.ingrediente.pk %}">Quitar</a>
+        </li>
+    {% empty %}
+        <li>No hay ingredientes aún.</li>
+    {% endfor %}
 </ul>
 
-<h1>Añadir ingredientes:</h1>
-<ul>
-{% for ingrediente in ingredientes %}
-    <li>{{ ingrediente.nombre }} <a href="{% url 'receta_agregar_ingrediente' receta.pk ingrediente.pk %}">Añadir</a></li>
-{% endfor %}
-</ul>
+<h2>Añadir ingrediente:</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Agregar ingrediente</button>
+</form>
+
+
+<div class="card-footer d-flex justify-content-between">
+    <a href="{% url 'relaciones' %}" class="btn btn-secondary">
+    ⬅️ Volver
+    </a>
+</div>
 {% endblock %}

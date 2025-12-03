@@ -45,7 +45,16 @@ class Ingredientes(models.Model):
 class Receta(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
-    ingredientes = models.ManyToManyField(Ingredientes, related_name='recetas')
+    ingredientes = models.ManyToManyField(Ingredientes, related_name='recetas', through='IngredienteReceta')
 
     def __str__(self):
         return f'{self.nombre}'
+    
+class IngredienteReceta(models.Model):
+    receta = models.ForeignKey(Receta, on_delete=models.CASCADE)
+    ingrediente = models.ForeignKey(Ingredientes, on_delete=models.CASCADE)
+    cantidad = models.FloatField()
+    unidad_medida = models.CharField(max_length=2, choices=Medida)
+
+    def __str__(self):
+        return f'{self.receta} - {self.ingrediente.nombre}'
