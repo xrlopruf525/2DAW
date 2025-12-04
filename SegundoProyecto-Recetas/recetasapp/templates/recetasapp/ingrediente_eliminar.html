@@ -9,7 +9,7 @@
             <h3 class="mb-0">Eliminar Ingrediente</h3>
         </div>
         <div class="card-body">
-            <p class="fs-5">¿Desea eliminar el ingrediente <strong>{{ ingrediente.nombre }}</strong>?</p>
+            <p class="fs-5">¿Desea eliminar el ingrediente <strong>{{ object.nombre }}</strong>?</p>
             <form method="post">
                 {% csrf_token %}
                 <div class="d-flex justify-content-between mt-4">
