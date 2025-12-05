@@ -53,6 +53,7 @@ const categorias = ["Aceite", "Encurtidos", "Salsas"];
 const catalogo = new Catalogo();
 const gestor = new Gestor();
 
+
 function cargaDatosIniciales() {
   catalogo.addProducto(1, "Aceite Oliva Virgen Extra 1l (Caja 20)", 178.15, 0);
   catalogo.addProducto(
@@ -91,3 +92,5 @@ function cargaDatosIniciales() {
   catalogo.addProducto(15, "Salsa Alioli 350 gr (Caja de 50)", 113.75, 2);
   catalogo.addProducto(16, "Salsa Barbacoa 500gr (Caja de 30)", 67.5, 2);
 }
+
+
