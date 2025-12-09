@@ -22,6 +22,7 @@ class Catalogo{
         const producto = new Producto(idProducto, nombreProducto, precioUnidad, idCatalogo);
         this._productos.push(producto);
     }
+
 }
 
 class LineaPedido{
