@@ -10,6 +10,10 @@ class Producto{
         this._precioUnidad = precioUnidad;
         this._idCatalogo = idCatalogo;
     }
+
+    get _idProducto(){
+        return this.__idProducto;
+    }
 }
 
 class Catalogo{

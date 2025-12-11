@@ -106,9 +106,9 @@ function cargarComercial() {
     selectComerciales.appendChild(option);
   });
 }
+
 function cargarClientes(indiceComercial) {
   const contenedorClientes = document.getElementById('clientes');
-
 
   const clientesExistentes = contenedorClientes.querySelectorAll('.cliente');
   clientesExistentes.forEach(cliente => cliente.remove());
@@ -123,10 +123,106 @@ function cargarClientes(indiceComercial) {
       divCliente.classList.add('cliente', 'pagado'); 
     }
 
+    // Al hacer click, actualizar cliente actual y mostrar pedido
+    divCliente.onclick = () => {
+      gestor._clienteActual = i;
+      mostrarPedido(cliente);
+    };
+
     contenedorClientes.appendChild(divCliente);
   });
+}function mostrarPedido(cliente) {
+  const panelPedido = document.getElementById('pedido');
+  panelPedido.innerHTML = ''; // Limpiar panel
 
+  // Título
+  const h2 = document.createElement('h2');
+  h2.textContent = 'Pedido';
+  panelPedido.appendChild(h2);
+
+  // Nombre del cliente
+  const nombreCliente = document.createElement('p');
+  nombreCliente.textContent = cliente._nombreCliente;
+  nombreCliente.style.fontWeight = 'bold';
+  panelPedido.appendChild(nombreCliente);
+
+  // Pedido del cliente actual
+  const pedidoCliente = gestor._pedidos[gestor._comercialActual][gestor._clienteActual];
+
+  // Solo mostrar tabla, total y botón si tiene alguna línea de pedido
+  if (pedidoCliente.length > 0) {
+    // Total del pedido
+    const total = pedidoCliente.reduce((acc, linea) => acc + linea.precio * linea.unidades, 0);
+    const totalP = document.createElement('p');
+    totalP.textContent = `Total: €${total.toFixed(2)}`;
+    totalP.style.fontWeight = 'bold';
+    panelPedido.appendChild(totalP);
+
+    // Botón "Pedido enviado y cobrado"
+    const botonEnviar = document.createElement('button');
+    botonEnviar.textContent = 'Pedido enviado y cobrado';
+    botonEnviar.className = 'boton';
+    panelPedido.appendChild(botonEnviar);
+
+    // Tabla del pedido
+    const tabla = document.createElement('table');
+
+    // Cabecera
+    const thead = document.createElement('thead');
+    const filaCabecera = document.createElement('tr');
+    ['Modificar', 'Uds', 'ID', 'Producto', 'Precio'].forEach(texto => {
+      const th = document.createElement('th');
+      th.textContent = texto;
+      filaCabecera.appendChild(th);
+    });
+    thead.appendChild(filaCabecera);
+    tabla.appendChild(thead);
+
+    // Cuerpo de la tabla
+    const tbody = document.createElement('tbody');
+    pedidoCliente.forEach(linea => {
+      const tr = document.createElement('tr');
+
+      // Modificar: botones + y -
+      const tdModificar = document.createElement('td');
+      const btnMas = document.createElement('button');
+      btnMas.textContent = '+';
+      btnMas.className = 'modificador';
+      const btnMenos = document.createElement('button');
+      btnMenos.textContent = '-';
+      btnMenos.className = 'modificador';
+      tdModificar.appendChild(btnMas);
+      tdModificar.appendChild(btnMenos);
+      tr.appendChild(tdModificar);
+
+      // Unidades
+      const tdUnidades = document.createElement('td');
+      tdUnidades.textContent = linea.unidades;
+      tr.appendChild(tdUnidades);
+
+      // ID
+      const tdID = document.createElement('td');
+      tdID.textContent = linea.codigo;
+      tr.appendChild(tdID);
+
+      // Producto
+      const tdProducto = document.createElement('td');
+      tdProducto.textContent = linea.nombre;
+      tr.appendChild(tdProducto);
+
+      // Precio
+      const tdPrecio = document.createElement('td');
+      tdPrecio.textContent = `€${linea.precio.toFixed(2)}`;
+      tr.appendChild(tdPrecio);
+
+      tbody.appendChild(tr);
+    });
+
+    tabla.appendChild(tbody);
+    panelPedido.appendChild(tabla);
+  }
 }
+
 
 
 function cargarCategorias() {
@@ -139,8 +235,6 @@ function cargarCategorias() {
   });
 }
 
-
-
 function cargarProductosPorCategoria(indiceCategoria) {
   const selectProductos = document.frmControles.productos;
   selectProductos.innerHTML = ''; 
@@ -148,10 +242,39 @@ function cargarProductosPorCategoria(indiceCategoria) {
   const productosFiltrados = catalogo._productos.filter(producto => producto._idCatalogo === indiceCategoria);
   productosFiltrados.forEach((producto) => {
     const option = document.createElement('option');
-    option.value = producto._codigo;
+    option.value = producto._idProducto;
     option.textContent = producto._nombreProducto;
     selectProductos.appendChild(option);
   });
+}
+function añadirLineaPedido(cliente, codigoProducto, unidades) {
+  let pedidoCliente = gestor._pedidos[gestor._comercialActual][gestor._clienteActual];
+  const lineaExistente = pedidoCliente.find(linea => linea.codigo === codigoProducto);
+
+  if (lineaExistente) {
+    alert("Este producto ya está en el pedido. Usa los botones + / - para modificar unidades.");
+    return;
+  }
+
+  const producto = catalogo._productos.find(p => p._idProducto === codigoProducto);
+  if (!producto) return;
+
+  const linea = {
+    codigo: producto._idProducto,
+    nombre: producto._nombreProducto,
+    unidades: unidades,
+    precio: producto._precioUnidad
+  };
+  pedidoCliente.push(linea);
+
+  const contenedorClientes = document.getElementById('clientes');
+  const divCliente = Array.from(contenedorClientes.children).find(div => div.textContent === cliente._nombreCliente);
+  if (divCliente) {
+    divCliente.classList.remove('pagado');
+    divCliente.classList.add('pendiente');
+  }
+
+  mostrarPedido(cliente);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -172,5 +295,22 @@ document.addEventListener('DOMContentLoaded', () => {
   document.frmControles.categorias.addEventListener('change', (e) => {
     cargarProductosPorCategoria(parseInt(e.target.value));
   });
-});
 
+  const botones = document.querySelectorAll('#teclado .tecla');
+  botones.forEach(boton => {
+    boton.addEventListener('click', () => {
+      const unidades = parseInt(boton.value);
+      const selectProducto = document.querySelector('select[name="productos"]');
+      const codigoProducto = parseInt(selectProducto.value);
+
+      console.log(selectProducto.value);
+      if (!codigoProducto) {
+        alert("Selecciona un producto antes de añadir unidades.");
+        return;
+      }
+
+      const clienteActual = gestor._clientes[gestor._comercialActual][gestor._clienteActual];
+      añadirLineaPedido(clienteActual, codigoProducto, unidades);
+    });
+  });
+});
