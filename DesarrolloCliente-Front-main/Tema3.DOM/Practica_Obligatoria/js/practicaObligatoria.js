@@ -162,7 +162,7 @@ function pedidoEnviado() {
     divCliente.classList.remove("pendiente");
     divCliente.classList.add("pagado");
   }
-  mostrarPedido(gestor._clientes[comercial][cliente], true);
+  mostrarPedido(gestor._clientes[comercial][cliente], false);
 }
 
 // Devuelve el div del cliente actual
