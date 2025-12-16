@@ -1,0 +1,149 @@
+/* =========================
+   TRANSFORMACIONES
+   ========================= */
+
+.caja {
+  width: 100px;
+  height: 100px;
+  background-color: crimson;
+
+  /* Mueve la caja 100px a la derecha y luego la gira 90° */
+  transform: translateX(100px) rotate(90deg);
+}
+
+
+/* =========================
+   TRANSFORM + HOVER
+   ========================= */
+
+.box {
+  width: 120px;
+  height: 120px;
+  background-color: steelblue;
+}
+
+.box:hover {
+  /* Al pasar el mouse baja 50px y se inclina */
+  transform: translateY(50px) skew(15deg);
+}
+
+
+/* =========================
+   TRANSICIONES
+   ========================= */
+
+.btn {
+  background-color: tomato;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  width: 120px;
+  cursor: pointer;
+
+  /* Suaviza el cambio de ancho y color */
+  transition: width 1s linear, background-color 0.5s;
+}
+
+.btn:hover {
+  /* Aumenta el ancho y cambia de color */
+  width: 220px;
+  background-color: seagreen;
+}
+
+
+/* =========================
+   TRANSICIÓN CON TRANSFORM
+   ========================= */
+
+.rotar {
+  width: 100px;
+  height: 100px;
+  background-color: purple;
+
+  /* Hace suave cualquier cambio en transform */
+  transition: transform 1s ease-in-out;
+}
+
+.rotar:hover {
+  /* Gira el elemento 180 grados */
+  transform: rotate(180deg);
+}
+
+
+/* =========================
+   ANIMACIONES (@keyframes)
+   ========================= */
+
+.animado {
+  width: 100px;
+  height: 100px;
+  position: relative;
+
+  /* Ejecuta la animación 'mover' durante 3s */
+  animation: mover 3s ease-in;
+}
+
+@keyframes mover {
+  /* Estado inicial */
+  0% {
+    left: 0;
+    background-color: red;
+  }
+
+  /* Estado final */
+  100% {
+    left: 100%;
+    background-color: blue;
+  }
+}
+
+
+/* =========================
+   LOADER (SPINNER)
+   ========================= */
+
+.loader {
+  width: 60px;
+  height: 60px;
+
+  /* Círculo con un borde visible arriba */
+  border: 8px solid #ddd;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+
+  /* Gira infinitamente */
+  animation: girar 1s linear infinite;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================
+   APARICIÓN / DESAPARICIÓN
+   ========================= */
+
+.menu {
+  /* Oculto inicialmente */
+  opacity: 0;
+  display: none;
+
+  /* Transición suave al aparecer */
+  transition: opacity 0.5s, display 0.5s;
+  transition-behavior: allow-discrete;
+
+  background: lightgray;
+  padding: 10px;
+}
+
+.contenedor:hover .menu {
+  /* Aparece al pasar el mouse */
+  opacity: 1;
+  display: block;
+}
