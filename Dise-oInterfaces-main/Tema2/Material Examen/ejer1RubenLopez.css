@@ -1,0 +1,35 @@
+:root {
+  --left-width: 50px;
+  --left-width-expanded: 40%;
+}
+
+
+
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+#contenedor{
+    width: 100vw;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: var(--left-width) 1fr;
+
+    transition: grid-template-columns 3s ease;
+}
+
+
+#contenedor:has(#left:hover) {
+  grid-template-columns: var(--left-width-expanded) 1fr;
+}
+
+#left{
+    background-color: blue;
+}
+
+#right {
+    background-color: red;
+}
+
+
