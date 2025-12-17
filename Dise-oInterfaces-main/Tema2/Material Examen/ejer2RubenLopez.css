@@ -14,7 +14,7 @@ body{
     position: relative;
     border-radius: 10px;
     background-color: white;
-    transition: transform 1s linear, rotate 1s linear;
+    transition: transform 1s ease;
     
 }
 
@@ -24,6 +24,7 @@ body{
     display: block;
     border-radius: 8px;
     margin-bottom: 12%;
+    transition: transform 1s ease;
 }
 
 .card p {
