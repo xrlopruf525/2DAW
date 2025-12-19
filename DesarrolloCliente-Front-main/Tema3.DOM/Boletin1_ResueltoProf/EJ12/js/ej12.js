@@ -25,7 +25,7 @@ function permutarSeleccion(img) { // img es la imagen clicada
 }
 
 function aplicarSeleccion() {
-  const destino = document.querySelector("[name='sitio']:checked").value; // Obtiene el radio seleccionado (sitio)
+  const destino = document.querySelector("[name='zona-destino']:checked").value; // Obtiene el radio seleccionado (sitio)
   const lugar = document.querySelector("[name='lugar']:checked").value; // Radio para posición (first/last)
   const clonar = document.querySelector("[name='clonar']").checked; // Checkbox: true si hay que clonar
   const contenedorDestino = document.getElementById(destino); // Div/capa donde van las imágenes
