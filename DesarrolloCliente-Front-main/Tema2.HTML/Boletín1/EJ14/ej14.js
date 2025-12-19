@@ -1,64 +1,25 @@
 formulario.addEventListener("submit", validarFormulario);
 
 function validarFormulario(event) {
-
-  // 📌 NOMBRE Y APELLIDOS
-  // ^                     → inicio del texto
-  // [A-ZÑÁÉÍÓÚ]            → primera letra en mayúscula (incluye Ñ y tildes)
-  // [a-zñáéíóú]*           → resto de letras en minúscula
-  // (\s[A-ZÑÁÉÍÓÚ][a-zñáéíóú]*)*
-  //                       → permite más palabras separadas por espacio,
-  //                         cada una empezando en mayúscula
-  // $                     → fin del texto
-  const regExpApellidosNombre =
-    /^[A-ZÑÁÉÍÓÚ][a-zñáéíóú]*(\s[A-ZÑÁÉÍÓÚ][a-zñáéíóú]*)*$/;
-
-  // 📌 FECHA DE NACIMIENTO
-  // \d\d        → dos dígitos (día)
-  // \/          → barra /
-  // \d\d        → dos dígitos (mes)
-  // \/          → barra /
-  // \d\d\d\d    → cuatro dígitos (año)
+  const regExpApellidosNombre = /^[A-ZÑÁÉÍÓÚ][a-zñáéíóú]*(s[A-ZÑÁÉÍÓÚ][a-zñáéíóú]*)*/;
   const regExpFechaNac = /\d\d\/\d\d\/\d\d\d\d/;
-
-  // 📌 DNI
-  // ^            → inicio
-  // [0-9]{7,8}   → 7 u 8 números
-  // [A-Z]        → una letra mayúscula
-  // $            → fin
   const regExpDni = /^[0-9]{7,8}[A-Z]$/;
-
-  // 📌 EMAIL
-  // ^                    → inicio
-  // [a-z.\-_]+            → letras minúsculas, puntos, guiones y _
-  // @                    → arroba obligatoria
-  // [a-z\-_]+             → dominio (letras, guiones y _)
-  // \.                   → punto
-  // [a-z]{2,4}            → extensión de 2 a 4 letras
-  // $                    → fin
-  const regExpEmail = /^[a-z.\-_]+@[a-z\-_]+\.[a-z]{2,4}$/;
-
-  // 📌 USUARIO IDEA
-  // ^            → inicio
-  // [a-z]{7}     → 7 letras minúsculas
-  // [0-9]{3}     → 3 números
-  // $            → fin
+  const regExpEmail = /^[a-z\.\-_]+@[a-z\-_]+\.[a-z]{2,4}/;
   const regExpUsuarioIdea = /^[a-z]{7}[0-9]{3}$/;
-
-  // 📌 TELÉFONO
-  // ^            → inicio
-  // [6789]       → empieza por 6, 7, 8 o 9
-  // [0-9]{8}     → ocho números más
-  // $            → fin
   const regExpTelefono = /^[6789][0-9]{8}$/;
-
-  // 📌 TWITTER
-  // ^            → inicio
-  // @            → debe empezar por @
-  // [a-zA-Z0-9_] → letras, números o _
-  // {4,15}       → entre 4 y 15 caracteres
-  // $            → fin
   const regExpTwitter = /^@[a-zA-Z0-9_]{4,15}$/;
+  const apellidos = formulario.apellidos.value.trim();
+  const nombre = formulario.nombre.value.trim();
+  const fechaNac = formulario.fechaNacimiento.value.trim();
+  const dni = formulario.dni.value.trim();
+  const email = formulario.email.value.trim();
+  const usuarioIdea = formulario.usuario.value.trim();
+  const telefono = formulario.telefono.value.trim();
+  const twitter = formulario.twitter.value.trim();
+  let errores = [];
+  let vacios = [];
+  let hayErrores = false;
+  let salida = "";
 
 
 // const regExpPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
