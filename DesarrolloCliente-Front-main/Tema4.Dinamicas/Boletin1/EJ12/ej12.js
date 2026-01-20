@@ -1,25 +1,10 @@
-// Obtenemos referencias al botón y al párrafo de salida
-const btnIniciar = document.getElementById("iniciaPromesa");
-const salida = document.getElementById("salida");
-
-// Función que crea la promesa que se resuelve en 2 segundos
-function crearPromesa() {
-  const mensaje = document.getElementById("msjExito").value;
-  return new Promise((resolve) => {
-    setTimeout(() => {resolve(mensaje);}, 2000);
+async function muestraMensaje() {
+  let promise = new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(document.getElementById("msjExito").value);
+    }, 2000);
   });
+  document.getElementById("salida").innerHTML = await promise;
 }
 
-// Función asincrónica que inicia la promesa y espera su resultado
-async function iniciaPromesa() {
-  salida.textContent = "Esperando 2 segundos..."; // Mensaje provisional
-
-  // "await" hace que el código espere a que la promesa se resuelva
-  const resultado = await crearPromesa();
-
-  // Una vez resuelta, mostramos el mensaje en el párrafo
-  salida.textContent = resultado;
-}
-
-// Asociamos la función al botón
-btnIniciar.addEventListener("click", iniciaPromesa);
+document.getElementById("iniciaPromesa").onclick = muestraMensaje;
