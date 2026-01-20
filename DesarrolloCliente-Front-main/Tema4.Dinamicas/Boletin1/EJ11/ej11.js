@@ -1,39 +1,32 @@
-let resolverPromesa;
-let temporizador;
-let promesa;
+document.getElementById("iniciaPromesa").onclick = iniciaPromesa;
+document.getElementById("procesarPromesa").onclick = procesarPromesa;
 
-// Botones
-const btnIniciar = document.getElementById("iniciaPromesa");
-const btnProcesar = document.getElementById("procesarPromesa");
-const salida = document.getElementById("salida");
+let promesaFinalizada;
 
-btnIniciar.addEventListener("click", () => {
-  const msjExito = document.getElementById("msjExito").value;
-  const msjError = document.getElementById("msjError").value;
- 
-
-  promesa = new Promise((resolve, reject) => {
-    resolverPromesa = resolve;
-
-    temporizador = setTimeout(() => {
-      reject(msjError || "Tiempo agotado");
-    }, 2000);
+function iniciaPromesa() {
+  promesaFinalizada = false;
+  let promise = new Promise(function (resolve, reject) {
+    setTimeout(gestionarPromesa, 2000, resolve, reject);
   });
 
-  promesa
-    .then((mensaje) => {
-      salida.textContent = mensaje;
-    })
-    .catch((error) => {
-      salida.textContent = error;
-    });
-});
+  promise.then(
+    (result) => mostrarResultado(result),
+    (error) => mostrarResultado(error)
+  );
+}
 
-btnProcesar.addEventListener("click", () => {
-  if (resolverPromesa) {
-    clearTimeout(temporizador);
-    const msjExito = document.getElementById("msjExito").value;
-    resolverPromesa(msjExito || "Promesa procesada correctamente");
-    resolverPromesa = null;
+function gestionarPromesa(resolve, reject) {
+  if (promesaFinalizada) {
+    resolve(document.getElementById("msjExito").value);
+  } else {
+    reject(document.getElementById("msjError").value);
   }
-});
+}
+
+function procesarPromesa() {
+  promesaFinalizada = true;
+}
+
+function mostrarResultado(mensaje) {
+  document.getElementById("salida").innerHTML = mensaje;
+}
