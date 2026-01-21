@@ -1,0 +1,32 @@
+<p>{{ title }}</p>
+
+<ul>
+  @if (primerCurso) {
+
+    <button (click)="cambiarCurso(false)">Mostrar 2º DAW</button>
+
+    @for (alumno of alumnado; track alumno.dni) {
+      @if (alumno.curso === '1º DAW') {
+        <li>
+         
+          {{ alumno.nombre }} {{ alumno.apellidos }}
+          ({{ alumno.curso }})
+        </li>
+      }
+    }
+
+  } @else {
+
+    <button (click)="cambiarCurso(true)">Mostrar 1º DAW</button>
+
+    @for (alumno of alumnado; track alumno.dni) {
+      @if (alumno.curso === '2º DAW') {
+        <li>
+         
+          {{ alumno.nombre }} {{ alumno.apellidos }}
+          ({{ alumno.curso }})
+        </li>
+      }
+    }
+  }
+</ul>

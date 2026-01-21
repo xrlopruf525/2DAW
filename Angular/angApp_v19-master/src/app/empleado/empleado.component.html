@@ -21,6 +21,10 @@
         <li> Nombre Externo: {{ empleadoExt.nombre }}</li>
     } @else{
         <button (click)="cambiarExterno(true)">Mostrar externos</button>
-        <li>Lista de trabajadores internos</li>
+        @for (empleado of trabajadores; track empleado.nombre; let index = $index){
+            <li>Empleado {{index+1}}: {{empleado.nombre}}</li>
+        }
+
+        
     }
 </ul>
