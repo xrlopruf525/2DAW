@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlumnoDAW, Modulo } from './alumnoDaw';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alumno-daw',
@@ -15,8 +16,14 @@ export class AlumnoDAWComponent {
   public alumnado: Array<AlumnoDAW> = [];
   public primerCurso: boolean = true;
 
-  constructor() {}
+  constructor(
+    private router: Router
+  ) {}
 
+  navigateToHome(){
+    this.router.navigateByUrl('/home');
+  }
+  
   ngOnInit() {
 
     this.alumno = new AlumnoDAW(

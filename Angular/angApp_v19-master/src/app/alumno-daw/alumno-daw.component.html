@@ -1,5 +1,6 @@
 <p>{{ title }}</p>
 
+
 <ul>
   @if (primerCurso) {
 
@@ -23,10 +24,12 @@
       @if (alumno.curso === '2º DAW') {
         <li>
          
-          {{ alumno.nombre }} {{ alumno.apellidos }}
+          Nombre:{{ alumno.nombre }} {{ alumno.apellidos }}
           ({{ alumno.curso }})
         </li>
       }
     }
   }
 </ul>
+
+<button class="btn btn-primary" (click)="navigateToHome()">Volver al inicio</button>

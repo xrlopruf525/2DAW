@@ -1,3 +1,12 @@
-<app-empleado></app-empleado>
-<app-alumno-daw></app-alumno-daw>
+<ul class="navbar-nav me-auto">
+    <li class="nav-item">
+        <a class="nav-link active" routerLink="/home" >Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="'empleado'">Empleado</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="'alumno-daw'">Alumnos</a>
+    </li>
+</ul>
 <router-outlet />

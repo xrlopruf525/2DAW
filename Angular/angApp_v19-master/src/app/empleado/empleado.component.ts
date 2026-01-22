@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Empleado } from './empleado';
+
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-empleado',
   imports: [],
@@ -14,9 +17,9 @@ export class EmpleadoComponent {
   public trabajadores : Array<Empleado> = [];
   public trabajadorExterno:boolean=true;
 
-  constructor(){
-    
-  }
+  constructor(
+    private router: Router
+  ){}
 
   ngOnInit(){
     this.empleado = new Empleado("Juan", 20, "Desarrollador", true);
@@ -28,4 +31,9 @@ export class EmpleadoComponent {
   cambiarExterno(valor:boolean){
     this.trabajadorExterno = valor;
   }
+
+  navigateToHome(){
+    this.router.navigateByUrl('/home');
+  }
+
 }
