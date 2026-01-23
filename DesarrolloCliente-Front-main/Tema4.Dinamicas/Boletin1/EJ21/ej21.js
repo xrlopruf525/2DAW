@@ -39,7 +39,62 @@ const renderCart = (cartArray) => {
 };
 
 // --- 3. LÓGICA DE LOCALSTORAGE (SOLUCIÓN) ---
-// TU CÓDIGO AQUÍ
+
+// [LECTURA] Recuperar datos
+const getCart = () => {
+  try {
+    // 1. Leemos la cadena de texto
+    const storedData = localStorage.getItem(CART_KEY);
+
+    // 2. Si es null (no existe), devolvemos array vacío
+    if (storedData === null) {
+      return [];
+    }
+
+    // 3. Si existe, convertimos Texto -> Objeto (Array)
+    return JSON.parse(storedData);
+  } catch (error) {
+    // Si el JSON está corrupto (alguien lo editó a mano mal), evitamos que la web se rompa
+    console.error("Error al leer localStorage:", error);
+    return [];
+  }
+};
+
+// [ESCRITURA] Añadir producto
+const addToCart = (product) => {
+  // 1. Obtenemos el estado actual (lo que ya había)
+  const currentCart = getCart();
+
+  // 2. Modificamos el array añadiendo el nuevo producto
+  currentCart.push(product);
+
+  // 3. Guardamos: Array -> Texto
+  try {
+    localStorage.setItem(CART_KEY, JSON.stringify(currentCart));
+
+    // 4. Importante: Actualizamos la vista inmediatamente
+    renderCart(currentCart);
+
+    console.log(`Añadido: ${product.name}`);
+  } catch (error) {
+    if (error.name === "QuotaExceededError") {
+      alert("¡Memoria llena! No se puede guardar más.");
+    } else {
+      console.error("Error al guardar:", error);
+    }
+  }
+};
+
+// [LIMPIEZA] Vaciar carrito
+clearBtn.addEventListener("click", () => {
+  // 1. Borramos la clave del navegador
+  localStorage.removeItem(CART_KEY);
+
+  // 2. Actualizamos la vista con un array vacío
+  renderCart([]);
+
+  console.log("Carrito vaciado.");
+});
 
 // --- 4. INICIALIZACIÓN ---
 // Al abrir la página, leemos lo que hay y lo pintamos
